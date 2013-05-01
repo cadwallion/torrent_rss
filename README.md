@@ -25,6 +25,16 @@ new entries to download to a specific folder.  By default, it will look for a co
 `~/.torrent_rss`.  This configuration file is written using [TOML](https://github.com/mojombo/toml), and
 includes the destination directory and the array of RSS feeds to query.
 
+Example:
+
+``` toml
+directory = "/opt/torrents"
+feeds = [
+  "http://example.com/torrent.rss",
+  "http://example2.com/doesnt/need/rss/extension"
+]
+```
+
 TorrentRSS also supports command-line flags that override anything set in `~/.torrent_rss`. Options:
   -f, [--feeds=one two three]  # Array of Feed URLs to parse and download from
   -d, [--directory=DIRECTORY]  # Directory to download torrent files from
