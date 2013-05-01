@@ -1,8 +1,10 @@
+require 'digest'
+
 module TorrentRSS
   class EntryLog
     class << self
       def has? entry_id
-        entries.include? entry_id
+        entries.include? encode_entry(entry_id)
       end
 
       def entries
@@ -17,8 +19,12 @@ module TorrentRSS
         end
       end
 
+      def encode_entry entry_id
+        Digest::MD5.hexdigest entry_id
+      end
+
       def add entry_id
-        entries << entry_id
+        entries << encode_entry(entry_id)
         save
       end
 
