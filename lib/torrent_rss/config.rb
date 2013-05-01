@@ -12,7 +12,19 @@ module TorrentRSS
       end
 
       def config_data
-        @config_data ||= TOML.load_file File.expand_path "~/.torrent_rss"
+        @config_data ||= read_config
+      end
+
+      def read_config
+        if File.exists? config_path
+          TOML.load_file  config_path
+        else
+          {}
+        end
+      end
+
+      def config_path
+        File.expand_path "~/.torrent_rss"
       end
     end
   end

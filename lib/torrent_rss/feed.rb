@@ -8,8 +8,16 @@ module TorrentRSS
     def fetch! options = {}
       @directory = options[:directory]
       parsed_feed.entries.each do |entry|
-        puts entry.url 
+        if new_entry? entry
+          torrent = Torrent.from_entry entry
+          torrent.download @directory
+          EntryLog.add entry.entry_id
+        end
       end
+    end
+
+    def new_entry? entry
+      !EntryLog.has? entry.entry_id
     end
 
     def parsed_feed

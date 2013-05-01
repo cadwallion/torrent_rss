@@ -1,3 +1,3 @@
-module TorrentRss
+module TorrentRSS
   VERSION = "0.0.1"
 end
