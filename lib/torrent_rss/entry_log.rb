@@ -11,7 +11,7 @@ module TorrentRSS
 
       def read
         if File.exists? file_path
-          File.read(file_path).split('\n')
+          File.read(file_path).split("\n")
         else
           []
         end
@@ -23,7 +23,7 @@ module TorrentRSS
       end
 
       def save
-        File.write file_path, entries.join('\n')
+        File.write file_path, entries.join("\n")
       end
 
       def file_path
