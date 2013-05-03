@@ -3,6 +3,7 @@ require 'toml'
 module TorrentRSS
   class Config
     class << self
+      attr_accessor :config_file
       def directory
         config_data['directory']
       end
@@ -16,15 +17,11 @@ module TorrentRSS
       end
 
       def read_config
-        if File.exists? config_path
-          TOML.load_file  config_path
+        if File.exists? config_file
+          TOML.load_file  config_file
         else
           {}
         end
-      end
-
-      def config_path
-        File.expand_path "~/.torrent_rss"
       end
     end
   end

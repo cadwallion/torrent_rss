@@ -35,9 +35,14 @@ feeds = [
 ]
 ```
 
-TorrentRSS also supports command-line flags that override anything set in `~/.torrent_rss`. Options:
+TorrentRSS also supports command-line flags that override anything set in its configuration file. By 
+default, that file is located at `~/.torrent_rss`, but can be overridden with the `--config` flag.
+
+Options:
   -f, [--feeds=one two three]  # Array of Feed URLs to parse and download from
   -d, [--directory=DIRECTORY]  # Directory to download torrent files from
+  -c, [--config=CONFIG]        # Specify the configuration file for TorrentRSS.
+                               # Default: ~/.torrent_rss
 
 Downloaded items have their IDs MD5'd and logged in `~/.torrent_rss_log` to prevent redownloading.
 
