@@ -46,4 +46,10 @@ Options:
 
 Downloaded items have their IDs MD5'd and logged in `~/.torrent_rss_log` to prevent redownloading.
 
+*torrent_rss monitor*
+
+Do you want to continuously monitor RSS feeds instead of periodically running `torrent_rss fetch`? Then
+you want the `torrent_rss monitor` utility. The monitor will check every 60 seconds if new torrents are
+ready for download.  When passed the -d option, it will fork and detach as a daemon.
+
 Questions? Issues? Want to contribute? Pull requests and issues welcome.
