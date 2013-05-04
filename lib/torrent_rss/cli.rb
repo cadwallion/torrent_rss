@@ -18,5 +18,29 @@ module TorrentRSS
         feed.fetch! directory: directory
       end
     end
+
+    desc 'monitor', 'continually monitors RSS feeds for changes to downloads'
+    method_option :daemonize, aliases: '-d', type: :boolean, default: false, banner: 'Daemonize the monitoring process'
+    def monitor
+      Signal.trap('INT') { puts 'shutting down' ; exit }
+
+      if options[:daemonize]
+        pid = fork do
+          looped_fetch 
+        end
+
+        Process.detach pid
+      else
+        looped_fetch
+      end
+    end
+
+    private
+    def looped_fetch
+      loop do
+        invoke :fetch
+        sleep 60
+      end
+    end
   end
 end
