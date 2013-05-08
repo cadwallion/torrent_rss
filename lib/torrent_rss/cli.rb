@@ -41,6 +41,7 @@ module TorrentRSS
     def looped_fetch
       loop do
         invoke :fetch
+        verbose "sleeping 60s until next fetch..."
         sleep 60
       end
     end

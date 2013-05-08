@@ -12,8 +12,12 @@ module TorrentRSS
         if new_entry? entry
           puts "Entry #{entry.entry_id} is new! Downloading..." if options[:verbose]
           torrent = Torrent.from_entry entry
-          torrent.download @directory
-          EntryLog.add entry.entry_id
+          if torrent.download @directory
+            puts "Entry #{entry.entry_id} downloaded to #{@directory}!" if options[:verbose]
+            EntryLog.add entry.entry_id
+          else
+            puts "Entry #{entry.entry_id} could not be downloaded" if options[:verbose]
+          end
         end
       end
     end
